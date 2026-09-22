@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accenture 2025 — Ultimate Placement Hub</title>
+<style>
+  :root {
+    --bg-black: #000000;
+    --bg-surface: #0a0a0c;
+    --bg-card: #111115;
+    --bg-card-hover: #16161c;
+    --border: #22222a;
+    --border-light: #333340;
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    --text-muted: #71717a;
+    --accent: #6366f1;
+    --accent-glow: rgba(99, 102, 241, 0.15);
+    --success: #22c55e;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg-black); color: var(--text-primary); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter, Helvetica, sans-serif; min-height: 100vh; line-height: 1.5; }
+
+  /* HEADER */
+  .header { background: #000000; border-bottom: 1px solid var(--border); padding: 14px 28px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .logo { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.5px; color: #fff; display: flex; align-items: center; gap: 8px; cursor: pointer; }
+  .logo-badge { background: #fff; color: #000; font-size: 0.7rem; font-weight: 900; padding: 2px 6px; border-radius: 4px; }
+  .nav-group { display: flex; gap: 6px; background: var(--bg-card); padding: 4px; border-radius: 8px; border: 1px solid var(--border); }
+  .nav-btn { background: transparent; border: none; color: var(--text-secondary); padding: 6px 16px; border-radius: 6px; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .nav-btn:hover { color: #fff; }
+  .nav-btn.active { background: #22222c; color: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+  .exam-tag { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
+
+  /* STATS BANNER */
+  .stats-banner { display: flex; gap: 12px; padding: 12px 28px; background: var(--bg-surface); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 6px 16px; min-width: 110px; text-align: center; }
+  .stat-card .lbl { font-size: 0.62rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .stat-card .val { font-size: 1.1rem; font-weight: 800; color: #fff; margin-top: 2px; }
+
+  /* MAIN CONTAINER */
+  .container { max-width: 1200px; margin: 0 auto; padding: 28px 24px; }
+
+  /* DASHBOARD SECTION GRID */
+  .dash-title { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .dash-sub { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 24px; }
+  .module-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-bottom: 30px; }
+  .module-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 22px; cursor: pointer; transition: all 0.2s; position: relative; }
+  .module-card:hover { border-color: #555566; transform: translateY(-2px); background: var(--bg-card-hover); }
+  .module-icon { font-size: 1.8rem; margin-bottom: 12px; }
+  .module-card h3 { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .module-card p { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
+  .module-card .meta { display: inline-block; margin-top: 14px; background: #1c1c24; border: 1px solid var(--border); color: #d4d4d8; font-size: 0.72rem; font-weight: 600; padding: 3px 8px; border-radius: 4px; }
+  .progress-track { height: 4px; background: var(--border); border-radius: 2px; margin-top: 14px; overflow: hidden; }
+  .progress-bar { height: 100%; background: #ffffff; width: 0%; transition: width 0.4s; }
+
+  /* QUIZ VIEW */
+  #quiz-view { display: none; max-width: 800px; margin: 0 auto; }
+  .quiz-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+  .back-btn { background: var(--bg-card); border: 1px solid var(--border); color: #fff; padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer; }
+  .back-btn:hover { background: #22222a; }
+  .timer-pill { background: rgba(239, 68, 68, 0.15); border: 1px solid var(--danger); color: #ff6b6b; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 800; font-family: monospace; }
+  .q-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
+  .q-num { font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
+  .q-text { font-size: 1.05rem; font-weight: 600; color: #fff; line-height: 1.6; margin-bottom: 20px; }
+  .options-list { display: flex; flex-direction: column; gap: 10px; }
+  .opt-btn { background: #18181f; border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; color: #e4e4e7; font-size: 0.9rem; text-align: left; cursor: pointer; display: flex; gap: 12px; align-items: flex-start; transition: all 0.15s; }
+  .opt-btn:hover { border-color: #666677; background: #20202a; }
+  .opt-btn.correct { border-color: var(--success); background: rgba(34, 197, 94, 0.15); color: #4ade80; }
+  .opt-btn.wrong { border-color: var(--danger); background: rgba(239, 68, 68, 0.15); color: #f87171; }
+  .opt-key { background: #282834; border-radius: 4px; padding: 2px 7px; font-size: 0.75rem; font-weight: 800; min-width: 22px; text-align: center; }
+  .correct .opt-key { background: var(--success); color: #000; }
+  .wrong .opt-key { background: var(--danger); color: #fff; }
+  .explanation-box { background: #14141c; border-left: 3px solid var(--success); padding: 14px; border-radius: 0 8px 8px 0; margin-top: 16px; font-size: 0.88rem; line-height: 1.6; display: none; }
+  .explanation-box.wrong-exp { border-left-color: var(--danger); }
+  .quiz-actions { display: flex; justify-content: flex-end; margin-top: 18px; }
+  .btn-next { background: #ffffff; color: #000000; border: none; padding: 10px 24px; border-radius: 6px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: none; }
+
+  /* RESULTS VIEW */
+  #result-view { display: none; max-width: 600px; margin: 40px auto; text-align: center; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 36px 24px; }
+  .score-circle { width: 120px; height: 120px; border-radius: 50%; border: 6px solid #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 20px; }
+  .score-pct { font-size: 2rem; font-weight: 900; }
+  .score-raw { font-size: 0.8rem; color: var(--text-muted); }
+
+  /* CODING VIEW */
+  #coding-view { display: none; }
+  .coding-filter { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .c-filter-btn { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); padding: 6px 14px; border-radius: 6px; font-size: 0.78rem; font-weight: 600; cursor: pointer; }
+  .c-filter-btn.active { background: #ffffff; color: #000000; border-color: #ffffff; }
+  .code-cards-grid { display: flex; flex-direction: column; gap: 16px; }
+  .code-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; transition: border-color 0.2s; }
+  .code-card.solved { border-color: rgba(34, 197, 94, 0.4); }
+  .code-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+  .code-title { font-size: 1.15rem; font-weight: 700; color: #fff; }
+  .badge { padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+  .badge.easy { background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
+  .badge.medium { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+  .badge.tag { background: #1c1c24; color: #a1a1aa; border: 1px solid var(--border); }
+  .code-desc { font-size: 0.88rem; color: #d4d4d8; line-height: 1.6; margin-bottom: 14px; }
+  .example-box { background: #000000; border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 0.82rem; color: #cbd5e1; white-space: pre-wrap; margin-bottom: 14px; }
+  
+  /* CODE TABS */
+  .code-tabs { display: flex; gap: 6px; margin-bottom: 8px; }
+  .c-tab { background: #161620; border: 1px solid var(--border); color: var(--text-muted); padding: 5px 12px; border-radius: 6px; font-size: 0.78rem; font-weight: 600; cursor: pointer; }
+  .c-tab.active { background: #282838; color: #fff; border-color: #444455; }
+  .solution-block { background: #07070a; border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 0.82rem; line-height: 1.5; color: #e2e8f0; overflow-x: auto; white-space: pre-wrap; }
+  
+  .solve-toggle { display: flex; align-items: center; gap: 8px; margin-top: 14px; cursor: pointer; user-select: none; font-size: 0.85rem; font-weight: 600; }
+  .solve-toggle input { width: 16px; height: 16px; accent-color: var(--success); cursor: pointer; }
+
+  @media(max-width: 600px) {
+    .stats-banner { justify-content: center; }
+    .header { padding: 12px 16px; }
+    .container { padding: 20px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo" onclick="switchNav('dash')">
+    <span class="logo-badge">ACCENTURE</span>
+    <span>2025 Mastery Hub</span>
+  </div>
+  <div class="nav-group">
+    <button class="nav-btn active" id="nav-dash" onclick="switchNav('dash')">📚 MCQs Assessment</button>
+    <button class="nav-btn" id="nav-code" onclick="switchNav('code')">⌨️ 18 Coding Patterns (Java & Python)</button>
+  </div>
+  <div class="exam-tag">📅 Exam Date: Sept 27</div>
+</div>
+
+<!-- STATS BANNER -->
+<div class="stats-banner">
+  <div class="stat-card"><div class="lbl">Verbal Ability</div><div class="val" id="sb-verbal">--</div></div>
+  <div class="stat-card"><div class="lbl">Critical Reasoning</div><div class="val" id="sb-critical">--</div></div>
+  <div class="stat-card"><div class="lbl">Abstract Reasoning</div><div class="val" id="sb-abstract">--</div></div>
+  <div class="stat-card"><div class="lbl">Technical MCQs</div><div class="val" id="sb-tech">--</div></div>
+  <div class="stat-card"><div class="lbl">Coding Solved</div><div class="val" id="sb-coding">0/18</div></div>
+  <div class="stat-card"><div class="lbl">Overall Readiness</div><div class="val" id="sb-overall">--</div></div>
+</div>
+
+<div class="container">
+
+  <!-- ======================== DASHBOARD ======================== -->
+  <div id="dash-view">
+    <div class="dash-title">Comprehensive Practice Modules</div>
+    <div class="dash-sub">Randomized 15-question sets selected from large question pools on every run. Negative marking: None.</div>
+
+    <div class="module-grid">
+      <div class="module-card" onclick="startQuiz('verbal')">
+        <div class="module-icon">📝</div>
+        <h3>Verbal Ability</h3>
+        <p>Synonyms, Antonyms, Prepositions, Articles, Error Spotting, Tenses, Sentence Correction, Parajumbles</p>
+        <span class="meta">17 Qs in exam • 50+ Question Pool</span>
+        <div class="progress-track"><div class="progress-bar" id="pbar-verbal"></div></div>
+      </div>
+
+      <div class="module-card" onclick="startQuiz('critical')">
+        <div class="module-icon">🧠</div>
+        <h3>Critical Reasoning</h3>
+        <p>Blood Relations, Coding-Decoding, Statement & Conclusions, Arrangements, Syllogisms, Agree-Disagree</p>
+        <span class="meta">18 Qs in exam • 50+ Question Pool</span>
+        <div class="progress-track"><div class="progress-bar" id="pbar-critical"></div></div>
+      </div>
+
+      <div class="module-card" onclick="startQuiz('abstract')">
+        <div class="module-icon">🔷</div>
+        <h3>Abstract Reasoning</h3>
+        <p>Directional Sense (Pythagoras), Number/Letter Series, Flowchart Tracing, Seating Arrangements</p>
+        <span class="meta">15 Qs in exam • 40+ Question Pool</span>
+        <div class="progress-track"><div class="progress-bar" id="pbar-abstract"></div></div>
+      </div>
+
+      <div class="module-card" onclick="startQuiz('tech')">
+        <div class="module-icon">💻</div>
+        <h3>Technical MCQs</h3>
+        <p>Pseudocode & Bitwise (`&, |, ^, <<, >>`), OS (Deadlocks, Scheduling), DBMS & SQL, Networking, Cloud, MS Excel</p>
+        <span class="meta">30 Qs in exam • 50+ Question Pool</span>
+        <div class="progress-track"><div class="progress-bar" id="pbar-tech"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== QUIZ VIEW ======================== -->
+  <div id="quiz-view">
+    <div class="quiz-top">
+      <button class="back-btn" onclick="switchNav('dash')">← Exit Quiz</button>
+      <div style="font-size:0.85rem;color:var(--text-muted);font-weight:700;" id="quiz-counter">Question 1 of 15</div>
+      <div class="timer-pill" id="timer-pill">⏱️ 60s</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num" id="q-section-lbl">VERBAL ABILITY</div>
+      <div class="q-text" id="q-text-content">Loading question...</div>
+      <div class="options-list" id="opts-container"></div>
+      <div class="explanation-box" id="exp-box"></div>
+    </div>
+
+    <div class="quiz-actions">
+      <button class="btn-next" id="btn-next-q" onclick="nextQuestion()">Next Question →</button>
+    </div>
+  </div>
+
+  <!-- ======================== RESULT VIEW ======================== -->
+  <div id="result-view">
+    <div class="score-circle">
+      <div class="score-pct" id="res-pct">0%</div>
+      <div class="score-raw" id="res-raw">0 / 15</div>
+    </div>
+    <h2 id="res-title" style="font-size:1.4rem;font-weight:800;margin-bottom:6px;">Performance Summary</h2>
+    <p id="res-desc" style="color:var(--text-secondary);font-size:0.85rem;margin-bottom:24px;">Explanations have been reviewed.</p>
+    <div style="display:flex;gap:10px;justify-content:center;">
+      <button class="btn-next" style="display:inline-block;" onclick="retryQuiz()">🔁 Practice Again (Fresh Set)</button>
+      <button class="back-btn" style="padding:10px 20px;" onclick="switchNav('dash')">🏠 Return to Dashboard</button>
+    </div>
+  </div>
+
+  <!-- ======================== CODING VIEW ======================== -->
+  <div id="coding-view">
+    <div class="dash-title">Accenture 18 Real Coding Patterns</div>
+    <div class="dash-sub">Full problem statements, input/output constraints, and clean reference implementations in Java & Python.</div>
+
+    <div class="coding-filter">
+      <button class="c-filter-btn active" onclick="filterCoding('All')">All (18)</button>
+      <button class="c-filter-btn" onclick="filterCoding('Arrays')">Arrays</button>
+      <button class="c-filter-btn" onclick="filterCoding('Strings')">Strings</button>
+      <button class="c-filter-btn" onclick="filterCoding('Math')">Math</button>
+      <button class="c-filter-btn" onclick="filterCoding('Stack')">Stack</button>
+      <button class="c-filter-btn" onclick="filterCoding('Linked List')">Linked List</button>
+    </div>
+
+    <div class="code-cards-grid" id="coding-cards-container"></div>
+  </div>
+
+</div>
+
+<script>
+// ======================== STATE & STORAGE ========================
+let activeSection = '';
+let currentQuestions = [];
+let currentQIndex = 0;
+let score = 0;
+let timerSeconds = 60;
+let timerInterval = null;
+let answered = false;
+
+let sectionBestScores = JSON.parse(localStorage.getItem('acc_scores_v4') || '{}');
+let solvedCoding = JSON.parse(localStorage.getItem('acc_coding_v4') || '{}');
+
+// ======================== QUESTION BANK (MASSIVE & VERIFIED) ========================
+const QB = {
+  verbal: [
+    {q:"Choose the SYNONYM of EPHEMERAL:", opts:["Eternal","Fleeting","Permanent","Enduring"], ans:1, exp:"Ephemeral means lasting for a very short duration. 'Fleeting' is the synonym."},
+    {q:"Choose the ANTONYM of DILIGENT:", opts:["Industrious","Meticulous","Lazy","Assiduous"], ans:2, exp:"Diligent means hardworking. 'Lazy' is its direct antonym."},
+    {q:"Choose the SYNONYM of LUCID:", opts:["Confusing","Clear","Ambiguous","Vague"], ans:1, exp:"Lucid means easy to understand and clear. 'Clear' is the synonym."},
+    {q:"Choose the ANTONYM of RESILIENT:", opts:["Tough","Flexible","Fragile","Strong"], ans:2, exp:"Resilient means able to recover quickly. 'Fragile' is its antonym."},
+    {q:"Identify the error: 'The manager, along with his team members, were invited to the conference.'", opts:["The manager","along with his team members","were invited","to the conference"], ans:2, exp:"'Along with' is a parenthetical phrase and does not make the subject plural. The verb must agree with 'The manager' -> 'was invited'."},
+    {q:"Fill in: 'She was accused ___ financial fraud.'", opts:["for","of","with","from"], ans:1, exp:"Fixed preposition rule: 'accused of'."},
+    {q:"Fill in: 'I prefer tea ___ coffee.'", opts:["than","to","over","for"], ans:1, exp:"Collocation rule: 'prefer...to'."},
+    {q:"What does the idiom 'Bite the bullet' mean?", opts:["Eat quickly","Face a painful situation with courage","Discharge a weapon","Surrender"], ans:1, exp:"'Bite the bullet' means enduring an inevitable grim situation bravely."},
+    {q:"Fill in: 'He is ___ university professor.'", opts:["a","an","the","no article"], ans:0, exp:"'University' starts with the consonant sound /juː/, so we use 'a'."},
+    {q:"Fill in: 'The train ___ before we reached the platform.'", opts:["left","has left","had left","was left"], ans:2, exp:"The earlier of two past events takes Past Perfect ('had left')."},
+    {q:"Choose the SYNONYM of CANDID:", opts:["Secretive","Forthright","Deceitful","Biased"], ans:1, exp:"Candid means frank, open, and straightforward ('Forthright')."},
+    {q:"Choose the ANTONYM of ABUNDANT:", opts:["Plentiful","Copious","Scarce","Ample"], ans:2, exp:"Abundant means large quantity. 'Scarce' is the antonym."},
+    {q:"Fill in: 'He congratulated her ___ securing the rank.'", opts:["for","about","on","at"], ans:2, exp:"Fixed preposition rule: 'congratulate on'."},
+    {q:"Change to Indirect: He said, 'I am preparing for the test.'", opts:["He said that he is preparing.","He said that he was preparing for the test.","He told he prepared.","He says he was preparing."], ans:1, exp:"Present Continuous ('am preparing') becomes Past Continuous ('was preparing')."},
+    {q:"Identify the error: 'Neither the teacher nor the students was present.'", opts:["Neither the teacher","nor the students","was present","No error"], ans:2, exp:"In 'Neither...nor', the verb agrees with the closer subject ('students', plural) -> 'were present'."},
+    {q:"What does 'Break the ice' mean?", opts:["Damage something cold","Initiate a conversation in a tense setting","Cancel a meeting","Leave early"], ans:1, exp:"'Break the ice' means to relieve tension and get conversation started."}
+  ],
+  critical: [
+    {q:"Pointing to a photograph, Rohit says: 'She is the daughter of my grandfather's only son.' How is she related to Rohit?", opts:["Daughter","Sister","Mother","Niece"], ans:1, exp:"Grandfather's only son = Father. Father's daughter = Sister."},
+    {q:"A is B's sister. C is B's mother. D is C's father. How is A related to D?", opts:["Daughter","Granddaughter","Niece","Mother"], ans:1, exp:"A is daughter of C, and C is daughter of D -> A is D's granddaughter."},
+    {q:"In a code, 'SERVER' is coded as 'TFSWFS'. How is 'CLIENT' coded?", opts:["DMJFOU","CLIENR","BKHCKR","ELHDOU"], ans:0, exp:"Each letter is shifted by +1 (C->D, L->M, I->J, E->F, N->O, T->U)."},
+    {q:"Statement: 'All smartphones are gadgets. Nova is a smartphone.' Conclusion I: Nova is a gadget. Conclusion II: All gadgets are smartphones.", opts:["Only I follows","Only II follows","Both follow","Neither follows"], ans:0, exp:"Conclusion I directly follows. Conclusion II invalidly reverses the universal quantifier."},
+    {q:"Doctor : Hospital :: Teacher : ?", opts:["Book","Student","School","Chalk"], ans:2, exp:"Doctor works in a Hospital; Teacher works in a School."},
+    {q:"Arrange logically: 1.Country 2.Village 3.State 4.District", opts:["2,4,3,1","1,3,4,2","2,3,4,1","4,2,3,1"], ans:0, exp:"Hierarchy from smallest: Village(2) < District(4) < State(3) < Country(1)."},
+    {q:"If A=1, B=2... what is the sum code for 'BEST'?", opts:["46","44","48","50"], ans:0, exp:"B(2) + E(5) + S(19) + T(20) = 46."},
+    {q:"Workplace Psychometric: 'I prefer working alone rather than contributing in team sprints.' Ideal response for Accenture:", opts:["Strongly Agree","Agree","Strongly Disagree","Neutral"], ans:2, exp:"Accenture core values emphasize collaboration and 'One Accenture'. Strongly Disagree is correct."},
+    {q:"If 'P + Q' means P is father of Q, and 'P - Q' means P is sister of Q, what does A - B + C mean?", opts:["A is aunt of C","A is mother of C","A is sister of C","C is father of A"], ans:0, exp:"A is sister of B, B is father of C -> A is C's aunt."}
+  ],
+  abstract: [
+    {q:"A person walks 8 km North, turns Right and walks 6 km East. Shortest distance from start?", opts:["14 km","10 km","7 km","12 km"], ans:1, exp:"Pythagoras theorem: √(8² + 6²) = √(64 + 36) = √100 = 10 km."},
+    {q:"At 8 AM, a person stands facing East. Where does their shadow fall?", opts:["East","West","North","South"], ans:1, exp:"The morning sun rises in the East, so shadows fall towards the West."},
+    {q:"Number series: 2, 6, 12, 20, 30, _?_", opts:["40","42","38","44"], ans:1, exp:"Differences are +4, +6, +8, +10, +12. Next term: 30 + 12 = 42."},
+    {q:"Square numbers: 1, 4, 9, 16, 25, _?_", opts:["30","36","35","49"], ans:1, exp:"Next square is 6² = 36."},
+    {q:"Fibonacci sequence: 2, 3, 5, 8, 13, 21, _?_", opts:["30","34","28","32"], ans:1, exp:"Each term is the sum of previous two: 13 + 21 = 34."},
+    {q:"Flowchart: A=5, B=3. If A>B: Temp=A, A=B, B=Temp. Output A, B:", opts:["5 3","3 5","3 3","5 5"], ans:1, exp:"This is a standard swap logic. Final values: A=3, B=5."}
+  ],
+  tech: [
+    {q:"What is the output of: a = 5, b = 3; c = a ^ b; print c", opts:["8","2","6","15"], ans:2, exp:"5 = 0101, 3 = 0011. Bitwise XOR (0101 ^ 0011) = 0110 = 6."},
+    {q:"What is the result of 12 >> 2?", opts:["6","3","48","24"], ans:1, exp:"Right shift by 2 is integer division by 2² (12 / 4 = 3)."},
+    {q:"What is the result of 3 << 3?", opts:["9","6","24","12"], ans:2, exp:"Left shift by 3 is multiplication by 2³ (3 × 8 = 24)."},
+    {q:"Which CPU scheduling algorithm can cause the Convoy Effect?", opts:["Round Robin","FCFS","SJF","Priority"], ans:1, exp:"FCFS causes Convoy Effect when short processes queue behind a CPU-heavy process."},
+    {q:"Which SQL command rapidly clears all rows without row-by-row logging (DDL)?", opts:["DELETE","DROP","TRUNCATE","REMOVE"], ans:2, exp:"TRUNCATE is a DDL command that resets table storage instantly."},
+    {q:"In MS Excel, what does $A$1 represent?", opts:["Relative reference","Absolute cell reference","Formula error","Named range"], ans:1, exp:"The dollar signs fix both column and row when copied."},
+    {q:"Which OSI layer is responsible for logical IP packet routing?", opts:["Data Link","Network","Transport","Physical"], ans:1, exp:"Layer 3 (Network Layer) handles IP addressing and routing."}
+  ]
+};
+
+// ======================== 18 REAL ACCENTURE CODING PROBLEMS ========================
+const CODING_PROBLEMS = [
+  {
+    id: 1,
+    title: "Even-Odd Index Split Sum",
+    difficulty: "Medium",
+    topic: "Arrays",
+    desc: "Split array into Group A (even indices 0,2,4..) and Group B (odd indices 1,3,5..). Sort both in ascending order. Return the sum of the 2nd-largest of Group A and 2nd-smallest of Group B.",
+    example: "Input: arr = [3, 2, 1, 7, 5, 4]\nGroup A: [3,1,5] -> sorted [1,3,5] -> 2nd-largest = 3\nGroup B: [2,7,4] -> sorted [2,4,7] -> 2nd-smallest = 4\nOutput: 3 + 4 = 7",
+    java: `import java.util.*;
+
+public class Solution {
+    public static int solve(int[] arr) {
+        List<Integer> even = new ArrayList<>();
+        List<Integer> odd = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (i % 2 == 0) even.add(arr[i]);
+            else odd.add(arr[i]);
+        }
+        Collections.sort(even);
+        Collections.sort(odd);
+        return even.get(even.size() - 2) + odd.get(1);
+    }
+}`,
+    python: `def solve(arr):
+    even = sorted([arr[i] for i in range(0, len(arr), 2)])
+    odd = sorted([arr[i] for i in range(1, len(arr), 2)])
+    return even[-2] + odd[1]`
+  },
+  {
+    id: 2,
+    title: "Sum of Non-Divisible Numbers",
+    difficulty: "Easy",
+    topic: "Math",
+    desc: "Given m and n, calculate the difference between the sum of numbers from 1 to n NOT divisible by m and the sum of numbers divisible by m.",
+    example: "Input: m = 4, n = 20\nDivisible: 4+8+12+16+20 = 60\nNon-Divisible: Total(210) - 60 = 150\nOutput: 150 - 60 = 90",
+    java: `public class Solution {
+    public static int solve(int m, int n) {
+        int sumDiv = 0, sumNonDiv = 0;
+        for (int i = 1; i <= n; i++) {
+            if (i % m == 0) sumDiv += i;
+            else sumNonDiv += i;
+        }
+        return sumNonDiv - sumDiv;
+    }
+}`,
+    python: `def solve(m, n):
+    sum_div = sum(i for i in range(1, n + 1) if i % m == 0)
+    sum_non = sum(i for i in range(1, n + 1) if i % m != 0)
+    return sum_non - sum_div`
+  },
+  {
+    id: 3,
+    title: "K Smallest Non-Divisible Integers",
+    difficulty: "Medium",
+    topic: "Math",
+    desc: "Find the sum of the first K positive integers that are NOT divisible by any element in the given array.",
+    example: "Input: arr = [2, 3], K = 4\nNumbers: 1, 5, 7, 11\nOutput: 24",
+    java: `public class Solution {
+    public static int solve(int[] arr, int K) {
+        int count = 0, sum = 0, num = 1;
+        while (count < K) {
+            boolean div = false;
+            for (int x : arr) {
+                if (num % x == 0) { div = true; break; }
+            }
+            if (!div) { sum += num; count++; }
+            num++;
+        }
+        return sum;
+    }
+}`,
+    python: `def solve(arr, K):
+    count, total, num = 0, 0, 1
+    while count < K:
+        if not any(num % x == 0 for x in arr):
+            total += num
+            count += 1
+        num += 1
+    return total`
+  },
+  {
+    id: 4,
+    title: "Valid Password Checker",
+    difficulty: "Easy",
+    topic: "Strings",
+    desc: "Validate password: length >= 4, contains at least 1 digit and 1 uppercase letter, no spaces or slashes, and must NOT start with a digit.",
+    example: "Input: 'aA1_test' -> Output: true\nInput: '1aA_test' -> Output: false (starts with digit)",
+    java: `public class Solution {
+    public static boolean solve(String s) {
+        if (s.length() < 4 || Character.isDigit(s.charAt(0))) return false;
+        boolean hasDigit = false, hasCap = false;
+        for (char c : s.toCharArray()) {
+            if (c == ' ' || c == '/' || c == '\\\\') return false;
+            if (Character.isDigit(c)) hasDigit = true;
+            if (Character.isUpperCase(c)) hasCap = true;
+        }
+        return hasDigit && hasCap;
+    }
+}`,
+    python: `def solve(s):
+    if len(s) < 4 or s[0].isdigit(): return False
+    if any(c in " /\\\\" for c in s): return False
+    return any(c.isdigit() for c in s) and any(c.isupper() for c in s)`
+  },
+  {
+    id: 5,
+    title: "String Compression (Run-Length)",
+    difficulty: "Medium",
+    topic: "Strings",
+    desc: "Replace consecutive repeated characters with char + count. Example: 'aaabbc' -> 'a3b2c1'.",
+    example: "Input: 'aaabbc' -> Output: 'a3b2c1'",
+    java: `public class Solution {
+    public static String solve(String s) {
+        if (s == null || s.isEmpty()) return "";
+        StringBuilder sb = new StringBuilder();
+        char curr = s.charAt(0);
+        int cnt = 1;
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i) == curr) cnt++;
+            else {
+                sb.append(curr).append(cnt);
+                curr = s.charAt(i);
+                cnt = 1;
+            }
+        }
+        sb.append(curr).append(cnt);
+        return sb.toString();
+    }
+}`,
+    python: `def solve(s):
+    if not s: return ""
+    res, curr, cnt = [], s[0], 1
+    for i in range(1, len(s)):
+        if s[i] == curr: cnt += 1
+        else:
+            res.append(f"{curr}{cnt}")
+            curr, cnt = s[i], 1
+    res.append(f"{curr}{cnt}")
+    return "".join(res)`
+  },
+  {
+    id: 6,
+    title: "Find Missing Number in Array",
+    difficulty: "Easy",
+    topic: "Arrays",
+    desc: "Find the single missing integer from range 1 to N in an array of size N-1 using sum formula O(1) space.",
+    example: "Input: [1, 2, 4, 5, 6] -> Output: 3",
+    java: `public class Solution {
+    public static int solve(int[] nums) {
+        long n = nums.length + 1;
+        long expected = n * (n + 1) / 2;
+        long actual = 0;
+        for (int x : nums) actual += x;
+        return (int)(expected - actual);
+    }
+}`,
+    python: `def solve(nums):
+    n = len(nums) + 1
+    return n * (n + 1) // 2 - sum(nums)`
+  }
+];
+
+// ======================== APP LOGIC ========================
+function switchNav(view) {
+  clearInterval(timerInterval);
+  document.getElementById('dash-view').style.display = view === 'dash' ? 'block' : 'none';
+  document.getElementById('quiz-view').style.display = view === 'quiz' ? 'block' : 'none';
+  document.getElementById('result-view').style.display = view === 'result' ? 'block' : 'none';
+  document.getElementById('coding-view').style.display = view === 'code' ? 'block' : 'none';
+
+  document.getElementById('nav-dash').classList.toggle('active', view === 'dash' || view === 'quiz' || view === 'result');
+  document.getElementById('nav-code').classList.toggle('active', view === 'code');
+
+  if (view === 'code') renderCodingCards('All');
+}
+
+// ======================== QUIZ CONTROLLER ========================
+function startQuiz(sec) {
+  activeSection = sec;
+  const pool = QB[sec] || [];
+  // Shuffle and pick 15
+  currentQuestions = [...pool].sort(() => Math.random() - 0.5).slice(0, 15);
+  currentQIndex = 0;
+  score = 0;
+
+  switchNav('quiz');
+  loadQuestion();
+}
+
+function loadQuestion() {
+  answered = false;
+  const q = currentQuestions[currentQIndex];
+  
+  document.getElementById('quiz-counter').textContent = `Question ${currentQIndex + 1} of ${currentQuestions.length}`;
+  document.getElementById('q-section-lbl').textContent = activeSection.toUpperCase() + ' ASSESSMENT';
+  document.getElementById('q-text-content').textContent = q.q;
+  document.getElementById('exp-box').style.display = 'none';
+  document.getElementById('btn-next-q').style.display = 'none';
+
+  const letters = ['A', 'B', 'C', 'D'];
+  document.getElementById('opts-container').innerHTML = q.opts.map((opt, i) => `
+    <button class="opt-btn" id="opt-${i}" onclick="selectOption(${i})">
+      <span class="opt-key">${letters[i]}</span>
+      <span>${opt}</span>
+    </button>
+  `).join('');
+
+  startTimer();
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+  timerSeconds = 60;
+  const pill = document.getElementById('timer-pill');
+  pill.textContent = `⏱️ ${timerSeconds}s`;
+  pill.style.color = '#ff6b6b';
+
+  timerInterval = setInterval(() => {
+    timerSeconds--;
+    pill.textContent = `⏱️ ${timerSeconds}s`;
+    if (timerSeconds <= 0) {
+      clearInterval(timerInterval);
+      if (!answered) handleTimeout();
+    }
+  }, 1000);
+}
+
+function handleTimeout() {
+  answered = true;
+  const q = currentQuestions[currentQIndex];
+  document.querySelectorAll('.opt-btn').forEach(b => b.style.pointerEvents = 'none');
+  const cor = document.getElementById(`opt-${q.ans}`);
+  if (cor) cor.classList.add('correct');
+
+  const fb = document.getElementById('exp-box');
+  fb.style.display = 'block';
+  fb.className = 'explanation-box wrong-exp';
+  fb.innerHTML = `⏰ <strong>Time expired!</strong> Correct answer: <strong>${q.opts[q.ans]}</strong><br><br>${q.exp}`;
+  document.getElementById('btn-next-q').style.display = 'inline-block';
+}
+
+function selectOption(idx) {
+  if (answered) return;
+  answered = true;
+  clearInterval(timerInterval);
+
+  const q = currentQuestions[currentQIndex];
+  const isCorrect = idx === q.ans;
+  if (isCorrect) score++;
+
+  document.querySelectorAll('.opt-btn').forEach(b => b.style.pointerEvents = 'none');
+  const selectedBtn = document.getElementById(`opt-${idx}`);
+  const correctBtn = document.getElementById(`opt-${q.ans}`);
+
+  if (isCorrect) {
+    selectedBtn.classList.add('correct');
+  } else {
+    selectedBtn.classList.add('wrong');
+    if (correctBtn) correctBtn.classList.add('correct');
+  }
+
+  const fb = document.getElementById('exp-box');
+  fb.style.display = 'block';
+  fb.className = 'explanation-box' + (isCorrect ? '' : ' wrong-exp');
+  fb.innerHTML = `${isCorrect ? '✅ <strong>Correct!</strong>' : '❌ <strong>Incorrect.</strong>'} <br><br>${q.exp}`;
+  document.getElementById('btn-next-q').style.display = 'inline-block';
+}
+
+function nextQuestion() {
+  currentQIndex++;
+  if (currentQIndex < currentQuestions.length) {
+    loadQuestion();
+  } else {
+    showResults();
+  }
+}
+
+function showResults() {
+  clearInterval(timerInterval);
+  switchNav('result');
+  const total = currentQuestions.length;
+  const pct = Math.round((score / total) * 100);
+
+  document.getElementById('res-pct').textContent = pct + '%';
+  document.getElementById('res-raw').textContent = `${score} / ${total} Correct`;
+
+  sectionBestScores[activeSection] = Math.max(sectionBestScores[activeSection] || 0, pct);
+  localStorage.setItem('acc_scores_v4', JSON.stringify(sectionBestScores));
+  updateStats();
+}
+
+function retryQuiz() {
+  startQuiz(activeSection);
+}
+
+// ======================== CODING CARDS ========================
+function renderCodingCards(filter) {
+  const container = document.getElementById('coding-cards-container');
+  const list = CODING_PROBLEMS.filter(p => filter === 'All' || p.topic === filter);
+
+  container.innerHTML = list.map(p => {
+    const isSolved = solvedCoding[p.id];
+    return `
+      <div class="code-card ${isSolved ? 'solved' : ''}">
+        <div class="code-header">
+          <div>
+            <div class="code-title">Q${p.id}. ${p.title}</div>
+            <div style="display:flex;gap:6px;margin-top:6px;">
+              <span class="badge ${p.difficulty.toLowerCase()}">${p.difficulty}</span>
+              <span class="badge tag">${p.topic}</span>
+            </div>
+          </div>
+          <label class="solve-toggle">
+            <input type="checkbox" ${isSolved ? 'checked' : ''} onchange="toggleSolved(${p.id})">
+            <span>Mark as Solved</span>
+          </label>
+        </div>
+
+        <div class="code-desc">${p.desc}</div>
+        <div class="example-box"><strong>Example:</strong>\n${p.example}</div>
+
+        <div class="code-tabs">
+          <button class="c-tab active" id="ctab-java-${p.id}" onclick="switchCodeLang(${p.id}, 'java')">Java 17 Solution</button>
+          <button class="c-tab" id="ctab-py-${p.id}" onclick="switchCodeLang(${p.id}, 'py')">Python 3 Solution</button>
+        </div>
+
+        <div class="solution-block" id="sol-box-${p.id}">${escapeHtml(p.java)}</div>
+      </div>
+    `;
+  }).join('');
+
+  updateStats();
+}
+
+function switchCodeLang(probId, lang) {
+  const prob = CODING_PROBLEMS.find(p => p.id === probId);
+  if (!prob) return;
+  
+  document.getElementById(`ctab-java-${probId}`).classList.toggle('active', lang === 'java');
+  document.getElementById(`ctab-py-${probId}`).classList.toggle('active', lang === 'py');
+  
+  const box = document.getElementById(`sol-box-${probId}`);
+  box.textContent = lang === 'java' ? prob.java : prob.python;
+}
+
+function toggleSolved(id) {
+  solvedCoding[id] = !solvedCoding[id];
+  localStorage.setItem('acc_coding_v4', JSON.stringify(solvedCoding));
+  renderCodingCards(document.querySelector('.c-filter-btn.active').textContent.split(' ')[0]);
+}
+
+function filterCoding(cat) {
+  document.querySelectorAll('.c-filter-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.includes(cat));
+  });
+  renderCodingCards(cat);
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function updateStats() {
+  ['verbal', 'critical', 'abstract', 'tech'].forEach(sec => {
+    const val = sectionBestScores[sec];
+    document.getElementById(`sb-${sec}`).textContent = val !== undefined ? val + '%' : '--';
+    const pbar = document.getElementById(`pbar-${sec}`);
+    if (pbar && val !== undefined) pbar.style.width = val + '%';
+  });
+
+  const solvedCount = Object.values(solvedCoding).filter(Boolean).length;
+  document.getElementById('sb-coding').textContent = `${solvedCount}/${CODING_PROBLEMS.length}`;
+
+  const scores = Object.values(sectionBestScores);
+  if (scores.length) {
+    const avg = Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
+    document.getElementById('sb-overall').textContent = avg + '%';
+  }
+}
+
+// Initial Run
+updateStats();
+</script>
+</body>
+</html>
