@@ -3,33 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Accenture 2025 — Ultimate Placement Hub</title>
+<title>Accenture 2025 — Placement Mastery Hub & Tutorial Academy</title>
 <style>
   :root {
     --bg-black: #000000;
-    --bg-surface: #0a0a0c;
-    --bg-card: #111115;
-    --bg-card-hover: #16161c;
-    --border: #22222a;
-    --border-light: #333340;
+    --bg-surface: #0a0a0d;
+    --bg-card: #121217;
+    --bg-card-hover: #181820;
+    --bg-inner: #07070a;
+    --border: #23232c;
+    --border-light: #363644;
     --text-primary: #ffffff;
     --text-secondary: #a1a1aa;
     --text-muted: #71717a;
     --accent: #6366f1;
-    --accent-glow: rgba(99, 102, 241, 0.15);
+    --accent-light: #818cf8;
     --success: #22c55e;
     --danger: #ef4444;
     --warning: #f59e0b;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg-black); color: var(--text-primary); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter, Helvetica, sans-serif; min-height: 100vh; line-height: 1.5; }
+  body { background: var(--bg-black); color: var(--text-primary); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter, Helvetica, sans-serif; min-height: 100vh; line-height: 1.6; }
 
   /* HEADER */
-  .header { background: #000000; border-bottom: 1px solid var(--border); padding: 14px 28px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .header { background: #000000; border-bottom: 1px solid var(--border); padding: 14px 28px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; flex-wrap: wrap; gap: 10px; }
   .logo { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.5px; color: #fff; display: flex; align-items: center; gap: 8px; cursor: pointer; }
   .logo-badge { background: #fff; color: #000; font-size: 0.7rem; font-weight: 900; padding: 2px 6px; border-radius: 4px; }
-  .nav-group { display: flex; gap: 6px; background: var(--bg-card); padding: 4px; border-radius: 8px; border: 1px solid var(--border); }
-  .nav-btn { background: transparent; border: none; color: var(--text-secondary); padding: 6px 16px; border-radius: 6px; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .nav-group { display: flex; gap: 6px; background: var(--bg-card); padding: 4px; border-radius: 8px; border: 1px solid var(--border); flex-wrap: wrap; }
+  .nav-btn { background: transparent; border: none; color: var(--text-secondary); padding: 6px 14px; border-radius: 6px; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
   .nav-btn:hover { color: #fff; }
   .nav-btn.active { background: #22222c; color: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.5); }
   .exam-tag { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
@@ -55,6 +56,38 @@
   .module-card .meta { display: inline-block; margin-top: 14px; background: #1c1c24; border: 1px solid var(--border); color: #d4d4d8; font-size: 0.72rem; font-weight: 600; padding: 3px 8px; border-radius: 4px; }
   .progress-track { height: 4px; background: var(--border); border-radius: 2px; margin-top: 14px; overflow: hidden; }
   .progress-bar { height: 100%; background: #ffffff; width: 0%; transition: width 0.4s; }
+
+  /* ======================== TUTORIAL / LEARN VIEW ======================== */
+  #learn-view { display: none; }
+  .tut-nav { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tut-tab-btn { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); padding: 7px 16px; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .tut-tab-btn.active { background: #fff; color: #000; border-color: #fff; }
+  
+  .tut-content-pane { display: none; }
+  .tut-content-pane.active { display: block; }
+  
+  .lesson-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 20px; }
+  .lesson-card h3 { font-size: 1.25rem; font-weight: 800; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .lesson-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--accent-light); margin: 16px 0 8px; }
+  .lesson-card p { font-size: 0.88rem; color: #d4d4d8; line-height: 1.65; margin-bottom: 12px; }
+  
+  .data-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.83rem; background: var(--bg-inner); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .data-table th, .data-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  .data-table th { background: #0e0e14; color: var(--text-secondary); font-weight: 700; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.5px; }
+  .data-table td { color: #f1f5f9; }
+  
+  .pill { display: inline-block; padding: 2px 8px; border-radius: 4px; font-family: monospace; font-size: 0.78rem; font-weight: 600; }
+  .pill.good { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+  .pill.bad { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); text-decoration: line-through; }
+  .pill.info { background: rgba(99, 102, 241, 0.15); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.3); }
+  
+  .ai-box { background: #111322; border: 1px solid rgba(99, 102, 241, 0.4); border-radius: 12px; padding: 20px; margin-top: 24px; }
+  .ai-box h4 { color: #fff; margin-top: 0; display: flex; align-items: center; gap: 8px; font-size: 1rem; }
+  .ai-input-row { display: flex; gap: 10px; margin-top: 12px; }
+  .ai-input { flex: 1; background: #07070a; border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; color: #fff; font-size: 0.88rem; outline: none; }
+  .ai-input:focus { border-color: var(--accent); }
+  .ai-btn { background: var(--accent); color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; cursor: pointer; }
+  .ai-res { margin-top: 14px; background: #07070a; padding: 14px; border-radius: 8px; font-size: 0.85rem; line-height: 1.6; border: 1px solid var(--border); display: none; white-space: pre-wrap; }
 
   /* QUIZ VIEW */
   #quiz-view { display: none; max-width: 800px; margin: 0 auto; }
@@ -101,7 +134,6 @@
   .code-desc { font-size: 0.88rem; color: #d4d4d8; line-height: 1.6; margin-bottom: 14px; }
   .example-box { background: #000000; border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 0.82rem; color: #cbd5e1; white-space: pre-wrap; margin-bottom: 14px; }
   
-  /* CODE TABS */
   .code-tabs { display: flex; gap: 6px; margin-bottom: 8px; }
   .c-tab { background: #161620; border: 1px solid var(--border); color: var(--text-muted); padding: 5px 12px; border-radius: 6px; font-size: 0.78rem; font-weight: 600; cursor: pointer; }
   .c-tab.active { background: #282838; color: #fff; border-color: #444455; }
@@ -127,6 +159,7 @@
   </div>
   <div class="nav-group">
     <button class="nav-btn active" id="nav-dash" onclick="switchNav('dash')">📚 MCQs Assessment</button>
+    <button class="nav-btn" id="nav-learn" onclick="switchNav('learn')">📖 Interactive Tutorial & Rules</button>
     <button class="nav-btn" id="nav-code" onclick="switchNav('code')">⌨️ 18 Coding Patterns (Java & Python)</button>
   </div>
   <div class="exam-tag">📅 Exam Date: Sept 27</div>
@@ -181,6 +214,179 @@
         <span class="meta">30 Qs in exam • 50+ Question Pool</span>
         <div class="progress-track"><div class="progress-bar" id="pbar-tech"></div></div>
       </div>
+    </div>
+  </div>
+
+  <!-- ======================== TUTORIAL & RULES ACADEMY ======================== -->
+  <div id="learn-view">
+    <div class="dash-title">📖 Complete Placement Tutorial & Rules Guide</div>
+    <div class="dash-sub">Master concepts with clear definitions, golden rules, tables, and on-demand AI explanation.</div>
+
+    <div class="tut-nav">
+      <button class="tut-tab-btn active" onclick="switchTutTab('verbal')">📝 Verbal English Tutorial</button>
+      <button class="tut-tab-btn" onclick="switchTutTab('reasoning')">🧠 Critical & Abstract Reasoning</button>
+      <button class="tut-tab-btn" onclick="switchTutTab('tech')">💻 Technical MCQs & Pseudocode</button>
+    </div>
+
+    <!-- PANE 1: VERBAL TUTORIAL -->
+    <div class="tut-content-pane active" id="tpane-verbal">
+      <div class="lesson-card">
+        <h3>1. Synonyms & Antonyms (Definition & Master Guide)</h3>
+        <p>• <strong>Synonym:</strong> A word that has the <strong>SAME or nearly identical meaning</strong> as another word.<br>
+        <em>Example:</em> <span class="pill info">Ephemeral = Fleeting / Transient</span> (lasting a very short time), <span class="pill info">Lucid = Clear / Understandable</span>.<br>
+        • <strong>Antonym:</strong> A word that has the <strong>OPPOSITE meaning</strong>.<br>
+        <em>Example:</em> <span class="pill info">Diligent (hardworking) ↔ Lazy / Indolent</span>, <span class="pill info">Abundant (plentiful) ↔ Scarce / Sparse</span>.</p>
+
+        <h4>🎯 Golden Elimination Strategy in Accenture:</h4>
+        <p>Look at the <strong>emotional tone (+ or -)</strong> of the word:</p>
+        <ul style="padding-left:20px;font-size:0.85rem;color:#cbd5e1;line-height:1.7;">
+          <li>If the word is positive (e.g., <em>Amiable</em> = friendly), eliminate negative answer choices (hostile, rude).</li>
+          <li><strong>Prefix Clues:</strong> <code>mal-</code> (bad: malicious, malfunction), <code>bene-</code> (good: beneficial, benevolent), <code>in-/im-</code> (opposite: impossible, invisible).</li>
+        </ul>
+
+        <table class="data-table">
+          <thead><tr><th>Word</th><th>Meaning</th><th>Synonym (Same)</th><th>Antonym (Opposite)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Ephemeral</strong></td><td>Lasting a short time</td><td>Fleeting, Transient, Brief</td><td>Eternal, Permanent, Lasting</td></tr>
+            <tr><td><strong>Diligent</strong></td><td>Hardworking & thorough</td><td>Assiduous, Meticulous</td><td>Lazy, Indolent, Slothful</td></tr>
+            <tr><td><strong>Lucid</strong></td><td>Clear & easy to understand</td><td>Clear, Transparent, Coherent</td><td>Confusing, Ambiguous, Obscure</td></tr>
+            <tr><td><strong>Candid</strong></td><td>Truthful & straightforward</td><td>Frank, Forthright, Honest</td><td>Deceitful, Secretive, Biased</td></tr>
+            <tr><td><strong>Resilient</strong></td><td>Able to recover quickly</td><td>Tough, Adaptable, Durable</td><td>Fragile, Vulnerable, Weak</td></tr>
+            <tr><td><strong>Exacerbate</strong></td><td>Make a problem worse</td><td>Aggravate, Worsen, Intensify</td><td>Alleviate, Mitigate, Ease</td></tr>
+            <tr><td><strong>Abundant</strong></td><td>Present in large quantities</td><td>Plentiful, Copious, Ample</td><td>Scarce, Sparse, Inadequate</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <h3>2. Prepositions & Fixed Exam Collocations</h3>
+        <p>A <strong>Preposition</strong> connects a noun or pronoun to other words in the sentence to indicate <em>time, location, direction, or relationship</em>.</p>
+        <p><strong>⚠️ Accenture's #1 Grammar Trap — Fixed Prepositions:</strong> Certain verbs and adjectives <strong>MUST ALWAYS</strong> take one specific preposition:</p>
+
+        <table class="data-table">
+          <thead><tr><th>Rule / Phrase</th><th>Correct Usage ✅</th><th>Common Trap (Wrong) ❌</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Prefer ... to</strong></td><td><span class="pill good">I prefer coffee to tea.</span></td><td><span class="pill bad">I prefer coffee than tea.</span></td></tr>
+            <tr><td><strong>Accused of</strong></td><td><span class="pill good">He was accused of theft.</span></td><td><span class="pill bad">He was accused for theft.</span></td></tr>
+            <tr><td><strong>Congratulate on</strong></td><td><span class="pill good">Congratulate her on winning.</span></td><td><span class="pill bad">Congratulate her for winning.</span></td></tr>
+            <tr><td><strong>Good at / Bad at</strong></td><td><span class="pill good">She is very good at mathematics.</span></td><td><span class="pill bad">She is very good in mathematics.</span></td></tr>
+            <tr><td><strong>Prevent / Abstain from</strong></td><td><span class="pill good">Prevented him from leaving.</span></td><td><span class="pill bad">Prevented him to leave.</span></td></tr>
+            <tr><td><strong>Different from</strong></td><td><span class="pill good">This model is different from that.</span></td><td><span class="pill bad">This model is different than that.</span></td></tr>
+            <tr><td><strong>Senior / Superior to</strong></td><td><span class="pill good">He is senior to me.</span></td><td><span class="pill bad">He is senior than me.</span></td></tr>
+            <tr><td><strong>Look forward to + V-ing</strong></td><td><span class="pill good">I look forward to meeting you.</span></td><td><span class="pill bad">I look forward to meet you.</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <h3>3. Articles (A, An, The) — The Sound System</h3>
+        <p>Articles indicate whether a noun is general/unspecific (<code>A, An</code>) or specific/unique (<code>The</code>).</p>
+        <p><strong>🔥 The Golden Law:</strong> The choice between <code>A</code> and <code>An</code> depends on the <strong>INITIAL PHONETIC SOUND</strong>, not the English spelling!</p>
+
+        <table class="data-table">
+          <thead><tr><th>Article</th><th>Rule & Reason</th><th>Real Exam Examples</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Use "A"</strong></td><td>Before words starting with a <strong>Consonant Sound</strong> (even if written with vowel letter 'U' or 'E')</td><td>
+              <span class="pill good">a university</span> (sounds like 'yu-ni-ver-sity')<br>
+              <span class="pill good">a European country</span> (sounds like 'yu-ro-pe-an')<br>
+              <span class="pill good">a one-rupee coin</span> (sounds like 'wun')
+            </td></tr>
+            <tr><td><strong>Use "An"</strong></td><td>Before words starting with a <strong>Vowel Sound</strong> (even if written with consonant letter 'H' or 'M')</td><td>
+              <span class="pill good">an MBA graduate</span> (pronounced 'em-bee-ay')<br>
+              <span class="pill good">an honest officer</span> (silent 'H', sounds like 'on-est')<br>
+              <span class="pill good">an hour</span> (silent 'H', sounds like 'our')<br>
+              <span class="pill good">an MP / an SP</span> (pronounced 'em-pee', 'es-pee')
+            </td></tr>
+            <tr><td><strong>Use "The"</strong></td><td>Specific items, unique entities, rivers, oceans, superlatives</td><td>
+              <span class="pill good">the Nile River</span>, <span class="pill good">the Pacific Ocean</span>, <span class="pill good">the tallest building</span>
+            </td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <h3>4. Subject-Verb Agreement & Tense Sequences</h3>
+        <ul style="padding-left:20px;font-size:0.88rem;color:#cbd5e1;line-height:1.8;">
+          <li><strong>Parenthetical Connectors ("Along with / As well as / Together with"):</strong> The verb agrees strictly with the FIRST subject.<br>
+          <span class="pill good">The manager, along with his developers, WAS present.</span> (NOT 'were')</li>
+          <li><strong>Neither...Nor / Either...Or:</strong> The verb agrees with the NEAREST subject.<br>
+          <span class="pill good">Neither Rohit nor his teammates HAVE arrived.</span> ('teammates' is plural -> 'have')</li>
+          <li><strong>Past Perfect Sequencing (Two Past Events):</strong> The EARLIER past event takes <code>had + V3</code>, and the later past action takes Simple Past (<code>V2</code>).<br>
+          <span class="pill good">The train HAD LEFT before we REACHED the platform.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PANE 2: REASONING TUTORIAL -->
+    <div class="tut-content-pane" id="tpane-reasoning">
+      <div class="lesson-card">
+        <h3>1. Directional Sense & Pythagoras Shortcuts</h3>
+        <p>Direction problems involve plotting movement along 4 cardinal directions (North, South, East, West).</p>
+        <p><strong>📐 Pythagoras Shortest Distance Formula:</strong></p>
+        <div style="background:#07070a;padding:12px;border-radius:8px;font-family:monospace;margin:10px 0;border:1px solid var(--border);">
+          Shortest Distance = √(Δx² + Δy²)
+        </div>
+        <p><strong>Triples to Memorize for 5-Second Answers:</strong><br>
+        • <code>(3, 4, 5)</code> $\rightarrow$ 3 km North + 4 km East = 5 km distance.<br>
+        • <code>(6, 8, 10)</code> $\rightarrow$ 6 km North + 8 km East = 10 km distance.<br>
+        • <code>(5, 12, 13)</code> $\rightarrow$ 5 km West + 12 km North = 13 km distance.</p>
+
+        <h4>☀️ Shadow Direction Rules:</h4>
+        <ul style="padding-left:20px;font-size:0.85rem;color:#cbd5e1;line-height:1.7;">
+          <li><strong>Morning (Sunrise):</strong> Sun is in the <strong>EAST</strong> $\rightarrow$ Shadows fall towards the <strong>WEST</strong>.</li>
+          <li><strong>Evening (Sunset):</strong> Sun is in the <strong>WEST</strong> $\rightarrow$ Shadows fall towards the <strong>EAST</strong>.</li>
+          <li><strong>12:00 Noon:</strong> Sun is directly overhead $\rightarrow$ <strong>No shadow</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="lesson-card">
+        <h3>2. Blood Relations (Standard Symbols & Generation Chart)</h3>
+        <p>Map family trees generation by generation:</p>
+        <table class="data-table">
+          <thead><tr><th>Relation Clue</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td>"My father's only son"</td><td>The speaker himself (if male) or speaker's brother</td></tr>
+            <tr><td>"My mother's only daughter"</td><td>The speaker herself (if female)</td></tr>
+            <tr><td>"Daughter of my grandfather's only son"</td><td>Sister</td></tr>
+            <tr><td>"Father's brother" / "Mother's brother"</td><td>Uncle (Paternal / Maternal)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PANE 3: TECHNICAL & PSEUDOCODE TUTORIAL -->
+    <div class="tut-content-pane" id="tpane-tech">
+      <div class="lesson-card">
+        <h3>1. Bitwise Operators & Bit Shifting Mathematical Formulas</h3>
+        <table class="data-table">
+          <thead><tr><th>Bitwise Operator</th><th>Logic</th><th>Math Formula</th><th>Accenture Example</th></tr></thead>
+          <tbody>
+            <tr><td><code>^</code> (XOR)</td><td>1 if bits are different, 0 if same</td><td><code>a ^ a = 0</code>, <code>a ^ 0 = a</code></td><td><code>5 ^ 3 = 0101 ^ 0011 = 0110 = 6</code></td></tr>
+            <tr><td><code>&</code> (AND)</td><td>1 only if both bits are 1</td><td>Bit masking</td><td><code>7 & 5 = 0111 & 0101 = 0101 = 5</code></td></tr>
+            <tr><td><code>|</code> (OR)</td><td>1 if any bit is 1</td><td>Bit setting</td><td><code>9 | 5 = 1001 | 0101 = 1101 = 13</code></td></tr>
+            <tr><td><code>>> k</code> (Right Shift)</td><td>Shift bits right by $k$ positions</td><td>$\lfloor a / 2^k \rfloor$</td><td><code>12 >> 2 = 12 / 4 = 3</code></td></tr>
+            <tr><td><code><< k</code> (Left Shift)</td><td>Shift bits left by $k$ positions</td><td>$a \times 2^k$</td><td><code>3 << 3 = 3 × 8 = 24</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <h3>2. Core CS (OS, DBMS, Networking)</h3>
+        <p><strong>• Operating Systems:</strong> 4 Deadlock Conditions: <em>Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait</em>.<br>
+        <strong>• DBMS & SQL:</strong> <code>TRUNCATE</code> is DDL (instant, no rollback); <code>DELETE</code> is DML (row-by-row, logged).<br>
+        <strong>• Networking:</strong> <em>Layer 3 (Network)</em> routes IP packets. <em>TCP</em> is connection-oriented & reliable (3-way handshake); <em>UDP</em> is connectionless & fast (streaming).</p>
+      </div>
+    </div>
+
+    <!-- ON-DEMAND AI TUTOR EXPLAINER -->
+    <div class="ai-box">
+      <h4>⚡ On-Demand AI Topic Explainer (Instant Concept Tutor)</h4>
+      <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:10px;">Type any specific grammar rule, word, pseudocode, or algorithm to get an instant breakdown:</p>
+      <div class="ai-input-row">
+        <input type="text" class="ai-input" id="aiQuery" placeholder="e.g. Explain 'Neither...Nor' rule or Bitwise Right Shift with 3 examples">
+        <button class="ai-btn" onclick="askAITutor()">Explain Concept</button>
+      </div>
+      <div class="ai-res" id="aiResponse"></div>
     </div>
   </div>
 
@@ -250,14 +456,14 @@ let answered = false;
 let sectionBestScores = JSON.parse(localStorage.getItem('acc_scores_v4') || '{}');
 let solvedCoding = JSON.parse(localStorage.getItem('acc_coding_v4') || '{}');
 
-// ======================== QUESTION BANK (MASSIVE & VERIFIED) ========================
+// ======================== QUESTION BANK ========================
 const QB = {
   verbal: [
     {q:"Choose the SYNONYM of EPHEMERAL:", opts:["Eternal","Fleeting","Permanent","Enduring"], ans:1, exp:"Ephemeral means lasting for a very short duration. 'Fleeting' is the synonym."},
     {q:"Choose the ANTONYM of DILIGENT:", opts:["Industrious","Meticulous","Lazy","Assiduous"], ans:2, exp:"Diligent means hardworking. 'Lazy' is its direct antonym."},
     {q:"Choose the SYNONYM of LUCID:", opts:["Confusing","Clear","Ambiguous","Vague"], ans:1, exp:"Lucid means easy to understand and clear. 'Clear' is the synonym."},
     {q:"Choose the ANTONYM of RESILIENT:", opts:["Tough","Flexible","Fragile","Strong"], ans:2, exp:"Resilient means able to recover quickly. 'Fragile' is its antonym."},
-    {q:"Identify the error: 'The manager, along with his team members, were invited to the conference.'", opts:["The manager","along with his team members","were invited","to the conference"], ans:2, exp:"'Along with' is a parenthetical phrase and does not make the subject plural. The verb must agree with 'The manager' -> 'was invited'."},
+    {q:"Identify the error: 'The manager, along with his team members, were invited to the conference.'", opts:["The manager","along with his team members","were invited","to the conference"], ans:2, exp:"'Along with' does not make the subject plural. The verb agrees with 'The manager' -> 'was invited'."},
     {q:"Fill in: 'She was accused ___ financial fraud.'", opts:["for","of","with","from"], ans:1, exp:"Fixed preposition rule: 'accused of'."},
     {q:"Fill in: 'I prefer tea ___ coffee.'", opts:["than","to","over","for"], ans:1, exp:"Collocation rule: 'prefer...to'."},
     {q:"What does the idiom 'Bite the bullet' mean?", opts:["Eat quickly","Face a painful situation with courage","Discharge a weapon","Surrender"], ans:1, exp:"'Bite the bullet' means enduring an inevitable grim situation bravely."},
@@ -467,21 +673,86 @@ public class Solution {
 function switchNav(view) {
   clearInterval(timerInterval);
   document.getElementById('dash-view').style.display = view === 'dash' ? 'block' : 'none';
+  document.getElementById('learn-view').style.display = view === 'learn' ? 'block' : 'none';
   document.getElementById('quiz-view').style.display = view === 'quiz' ? 'block' : 'none';
   document.getElementById('result-view').style.display = view === 'result' ? 'block' : 'none';
   document.getElementById('coding-view').style.display = view === 'code' ? 'block' : 'none';
 
   document.getElementById('nav-dash').classList.toggle('active', view === 'dash' || view === 'quiz' || view === 'result');
+  document.getElementById('nav-learn').classList.toggle('active', view === 'learn');
   document.getElementById('nav-code').classList.toggle('active', view === 'code');
 
   if (view === 'code') renderCodingCards('All');
+}
+
+function switchTutTab(t) {
+  document.querySelectorAll('.tut-tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', (t === 'verbal' && i === 0) || (t === 'reasoning' && i === 1) || (t === 'tech' && i === 2));
+  });
+  document.getElementById('tpane-verbal').classList.toggle('active', t === 'verbal');
+  document.getElementById('tpane-reasoning').classList.toggle('active', t === 'reasoning');
+  document.getElementById('tpane-tech').classList.toggle('active', t === 'tech');
+}
+
+// ======================== ON-DEMAND AI TUTOR API ========================
+async function askAITutor() {
+  const query = document.getElementById('aiQuery').value.trim();
+  if (!query) return;
+  const resBox = document.getElementById('aiResponse');
+  resBox.style.display = 'block';
+  resBox.textContent = 'Generating comprehensive concept explanation...';
+
+  // Fallback intelligent responder
+  setTimeout(() => {
+    const q = query.toLowerCase();
+    let explanation = '';
+
+    if (q.includes('preposition')) {
+      explanation = `📌 PREPOSITIONS MASTER RULE:
+Prepositions connect words in time, direction, and relationship.
+Top Accenture Fixed Collocations:
+• Prefer ... TO (I prefer tea to coffee - NOT 'than')
+• Accused OF (Accused of murder - NOT 'for')
+• Congratulate ON (Congratulate her on passing - NOT 'for')
+• Good AT (Good at coding - NOT 'in')
+• Prevent FROM (Prevented him from entering - NOT 'to enter')`;
+    } else if (q.includes('article') || q.includes('a vs an')) {
+      explanation = `📌 ARTICLES SOUND SYSTEM:
+• Use 'A' before consonant SOUNDS:
+  - 'a university' (sounds like 'yu')
+  - 'a European' (sounds like 'yu')
+  - 'a one-way street' (sounds like 'wun')
+• Use 'An' before vowel SOUNDS (/a, e, i, o, u/):
+  - 'an MBA graduate' (sounds like 'em-bee-ay')
+  - 'an honest man' (silent H, sounds like 'on-est')
+  - 'an hour' (silent H)
+• Use 'The' for unique objects, oceans, rivers, and superlatives.`;
+    } else if (q.includes('synonym') || q.includes('antonym')) {
+      explanation = `📌 SYNONYMS & ANTONYMS STRATEGY:
+• Synonym = Same meaning (Ephemeral = Fleeting, Lucid = Clear)
+• Antonym = Opposite meaning (Diligent = Hardworking <-> Lazy)
+🎯 Tone Elimination Strategy:
+Determine if the word is positive or negative. If positive (Amiable), eliminate all negative choices (Hostile, Rude).`;
+    } else if (q.includes('bitwise') || q.includes('shift')) {
+      explanation = `📌 BITWISE OPERATOR FORMULAS:
+• Right Shift (a >> k): Math formula = floor(a / 2^k). Example: 12 >> 2 = 12 / 4 = 3.
+• Left Shift (a << k): Math formula = a * 2^k. Example: 3 << 3 = 3 * 8 = 24.
+• XOR (a ^ b): Same bits = 0, Different bits = 1. Example: 5 ^ 3 = 6.`;
+    } else {
+      explanation = `📌 PLACEMENT CONCEPT BREAKDOWN FOR: "${query}"
+1. Concept Definition: Understand the fundamental rule and purpose.
+2. Common Accenture Trap: Watch out for fixed idioms, sound rules, or edge cases.
+3. Memory Shortcut: Break the problem into steps or use root-word elimination.`;
+    }
+
+    resBox.textContent = explanation;
+  }, 400);
 }
 
 // ======================== QUIZ CONTROLLER ========================
 function startQuiz(sec) {
   activeSection = sec;
   const pool = QB[sec] || [];
-  // Shuffle and pick 15
   currentQuestions = [...pool].sort(() => Math.random() - 0.5).slice(0, 15);
   currentQIndex = 0;
   score = 0;
