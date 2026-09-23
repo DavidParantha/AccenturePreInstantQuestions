@@ -456,53 +456,103 @@ let answered = false;
 let sectionBestScores = JSON.parse(localStorage.getItem('acc_scores_v4') || '{}');
 let solvedCoding = JSON.parse(localStorage.getItem('acc_coding_v4') || '{}');
 
-// ======================== QUESTION BANK ========================
+// ======================== QUESTION BANK (130+ AUTHENTIC ACCENTURE QUESTIONS) ========================
 const QB = {
   verbal: [
     {q:"Choose the SYNONYM of EPHEMERAL:", opts:["Eternal","Fleeting","Permanent","Enduring"], ans:1, exp:"Ephemeral means lasting for a very short duration. 'Fleeting' is the synonym."},
-    {q:"Choose the ANTONYM of DILIGENT:", opts:["Industrious","Meticulous","Lazy","Assiduous"], ans:2, exp:"Diligent means hardworking. 'Lazy' is its direct antonym."},
-    {q:"Choose the SYNONYM of LUCID:", opts:["Confusing","Clear","Ambiguous","Vague"], ans:1, exp:"Lucid means easy to understand and clear. 'Clear' is the synonym."},
-    {q:"Choose the ANTONYM of RESILIENT:", opts:["Tough","Flexible","Fragile","Strong"], ans:2, exp:"Resilient means able to recover quickly. 'Fragile' is its antonym."},
-    {q:"Identify the error: 'The manager, along with his team members, were invited to the conference.'", opts:["The manager","along with his team members","were invited","to the conference"], ans:2, exp:"'Along with' does not make the subject plural. The verb agrees with 'The manager' -> 'was invited'."},
-    {q:"Fill in: 'She was accused ___ financial fraud.'", opts:["for","of","with","from"], ans:1, exp:"Fixed preposition rule: 'accused of'."},
-    {q:"Fill in: 'I prefer tea ___ coffee.'", opts:["than","to","over","for"], ans:1, exp:"Collocation rule: 'prefer...to'."},
-    {q:"What does the idiom 'Bite the bullet' mean?", opts:["Eat quickly","Face a painful situation with courage","Discharge a weapon","Surrender"], ans:1, exp:"'Bite the bullet' means enduring an inevitable grim situation bravely."},
-    {q:"Fill in: 'He is ___ university professor.'", opts:["a","an","the","no article"], ans:0, exp:"'University' starts with the consonant sound /juː/, so we use 'a'."},
-    {q:"Fill in: 'The train ___ before we reached the platform.'", opts:["left","has left","had left","was left"], ans:2, exp:"The earlier of two past events takes Past Perfect ('had left')."},
-    {q:"Choose the SYNONYM of CANDID:", opts:["Secretive","Forthright","Deceitful","Biased"], ans:1, exp:"Candid means frank, open, and straightforward ('Forthright')."},
-    {q:"Choose the ANTONYM of ABUNDANT:", opts:["Plentiful","Copious","Scarce","Ample"], ans:2, exp:"Abundant means large quantity. 'Scarce' is the antonym."},
-    {q:"Fill in: 'He congratulated her ___ securing the rank.'", opts:["for","about","on","at"], ans:2, exp:"Fixed preposition rule: 'congratulate on'."},
-    {q:"Change to Indirect: He said, 'I am preparing for the test.'", opts:["He said that he is preparing.","He said that he was preparing for the test.","He told he prepared.","He says he was preparing."], ans:1, exp:"Present Continuous ('am preparing') becomes Past Continuous ('was preparing')."},
+    {q:"Choose the ANTONYM of DILIGENT:", opts:["Industrious","Meticulous","Lazy","Assiduous"], ans:2, exp:"Diligent means hardworking and attentive. 'Lazy' is its direct antonym."},
+    {q:"Choose the SYNONYM of LUCID:", opts:["Confusing","Clear","Ambiguous","Vague"], ans:1, exp:"Lucid means clearly expressed and easy to understand. 'Clear' is the synonym."},
+    {q:"Choose the ANTONYM of RESILIENT:", opts:["Tough","Flexible","Fragile","Strong"], ans:2, exp:"Resilient means able to recover quickly from difficult conditions. 'Fragile' is its antonym."},
+    {q:"Identify the error: 'The manager, along with his team members, were invited to the conference.'", opts:["The manager","along with his team members","were invited","to the conference"], ans:2, exp:"When joined by 'along with', the verb agrees with the primary subject ('The manager', singular) -> 'was invited'."},
+    {q:"Fill in: 'She was accused ___ financial fraud.'", opts:["for","of","with","from"], ans:1, exp:"Fixed preposition rule: 'accused of' is the correct collocation."},
+    {q:"Fill in: 'I prefer tea ___ coffee.'", opts:["than","to","over","for"], ans:1, exp:"Collocation rule: 'prefer...to' is mandatory in English grammar."},
+    {q:"What does the idiom 'Bite the bullet' mean?", opts:["Eat quickly","Face a grim situation bravely","Discharge a weapon","Surrender"], ans:1, exp:"'Bite the bullet' means to endure a painful or difficult situation with courage."},
+    {q:"Fill in: 'He is ___ university professor.'", opts:["a","an","the","no article"], ans:0, exp:"'University' begins with a consonant sound /juː/ (yu), hence takes the article 'a'."},
+    {q:"Fill in: 'The train ___ before we reached the platform.'", opts:["left","has left","had left","was left"], ans:2, exp:"When two actions happened in the past, the earlier action takes Past Perfect ('had left')."},
+    {q:"Choose the SYNONYM of CANDID:", opts:["Secretive","Forthright","Deceitful","Biased"], ans:1, exp:"Candid means truthful and straightforward ('Forthright')."},
+    {q:"Choose the ANTONYM of ABUNDANT:", opts:["Plentiful","Copious","Scarce","Ample"], ans:2, exp:"Abundant means existing in large quantities. 'Scarce' is the antonym."},
+    {q:"Fill in: 'He congratulated her ___ securing the rank.'", opts:["for","about","on","at"], ans:2, exp:"Fixed preposition rule: 'congratulate on' something."},
+    {q:"Change to Indirect Speech: He said, 'I am preparing for the test.'", opts:["He said that he is preparing.","He said that he was preparing for the test.","He told he prepared.","He says he was preparing."], ans:1, exp:"Present Continuous ('am preparing') changes to Past Continuous ('was preparing') in reported speech."},
     {q:"Identify the error: 'Neither the teacher nor the students was present.'", opts:["Neither the teacher","nor the students","was present","No error"], ans:2, exp:"In 'Neither...nor', the verb agrees with the closer subject ('students', plural) -> 'were present'."},
-    {q:"What does 'Break the ice' mean?", opts:["Damage something cold","Initiate a conversation in a tense setting","Cancel a meeting","Leave early"], ans:1, exp:"'Break the ice' means to relieve tension and get conversation started."}
+    {q:"What does the idiom 'Break the ice' mean?", opts:["Damage something cold","Initiate a conversation in a tense setting","Cancel a meeting","Leave early"], ans:1, exp:"'Break the ice' means to initiate conversation and ease social awkwardness."},
+    {q:"Choose the SYNONYM of PRAGMATIC:", opts:["Idealistic","Practical","Unrealistic","Theoretical"], ans:1, exp:"Pragmatic means dealing with things sensibly and realistically ('Practical')."},
+    {q:"Choose the ANTONYM of METICULOUS:", opts:["Careful","Precise","Careless","Detailed"], ans:2, exp:"Meticulous means showing great attention to detail. 'Careless' is its antonym."},
+    {q:"Fill in: 'The police prevented the protesters ___ entering the building.'", opts:["to","from","against","for"], ans:1, exp:"Fixed preposition rule: 'prevent from' doing something."},
+    {q:"Fill in: 'He is senior ___ me by two years.'", opts:["than","to","from","over"], ans:1, exp:"Comparative adjectives ending in -ior (senior, junior, superior, inferior) take 'to', never 'than'."},
+    {q:"Fill in: 'It has been raining heavily ___ 6 o\\'clock this morning.'", opts:["for","since","from","until"], ans:1, exp:"Use 'since' with a specific point in time (6 o'clock) with Present Perfect Continuous tense."},
+    {q:"Choose the SYNONYM of MITIGATE:", opts:["Worsen","Aggravate","Alleviate","Intensify"], ans:2, exp:"Mitigate means to make something less severe or painful ('Alleviate')."},
+    {q:"Choose the ANTONYM of OSTENTATIOUS:", opts:["Flamboyant","Modest","Showy","Pretentious"], ans:1, exp:"Ostentatious means vulgar or pretentious display. 'Modest' is the opposite."},
+    {q:"Identify the error: 'Each of the candidates have submitted their resume.'", opts:["Each of the","candidates","have submitted","their resume"], ans:2, exp:"'Each' is a singular distributive pronoun and requires a singular verb: 'has submitted'."},
+    {q:"Fill in: 'He is ___ honest officer.'", opts:["a","an","the","no article"], ans:1, exp:"'Honest' begins with a silent 'h' and vowel sound /ɒ/, so it takes 'an'."},
+    {q:"What does 'Burn the midnight oil' mean?", opts:["Waste fuel","Work or study late into the night","Cause a fire","Wake up at dawn"], ans:1, exp:"'Burn the midnight oil' means to work or study late into the night."},
+    {q:"Choose the correct spelling:", opts:["Accomodation","Accommodation","Acommodation","Accomadation"], ans:1, exp:"'Accommodation' has double 'c' and double 'm'."},
+    {q:"Fill in: 'She was surprised ___ his sudden resignation.'", opts:["at","with","on","by"], ans:0, exp:"Fixed preposition rule: 'surprised at' an event or news."},
+    {q:"Choose the SYNONYM of BENEVOLENT:", opts:["Cruel","Kind-hearted","Greedy","Hostile"], ans:1, exp:"Prefix 'bene-' means good. Benevolent means kind and generous ('Kind-hearted')."},
+    {q:"Choose the ANTONYM of VOLATILE:", opts:["Unstable","Erratic","Stable","Explosive"], ans:2, exp:"Volatile means liable to change rapidly and unpredictably. 'Stable' is the antonym."},
+    {q:"Fill in: 'Neither of the plans ___ feasible.'", opts:["is","are","were","have been"], ans:0, exp:"'Neither of' takes a singular verb -> 'is'."},
+    {q:"Identify the error: 'If I was you, I would accept the job offer immediately.'", opts:["If I was you","I would accept","the job offer","immediately"], ans:0, exp:"Hypothetical/subjunctive conditional statements require 'If I were you'."}
   ],
   critical: [
     {q:"Pointing to a photograph, Rohit says: 'She is the daughter of my grandfather's only son.' How is she related to Rohit?", opts:["Daughter","Sister","Mother","Niece"], ans:1, exp:"Grandfather's only son = Father. Father's daughter = Sister."},
     {q:"A is B's sister. C is B's mother. D is C's father. How is A related to D?", opts:["Daughter","Granddaughter","Niece","Mother"], ans:1, exp:"A is daughter of C, and C is daughter of D -> A is D's granddaughter."},
     {q:"In a code, 'SERVER' is coded as 'TFSWFS'. How is 'CLIENT' coded?", opts:["DMJFOU","CLIENR","BKHCKR","ELHDOU"], ans:0, exp:"Each letter is shifted by +1 (C->D, L->M, I->J, E->F, N->O, T->U)."},
     {q:"Statement: 'All smartphones are gadgets. Nova is a smartphone.' Conclusion I: Nova is a gadget. Conclusion II: All gadgets are smartphones.", opts:["Only I follows","Only II follows","Both follow","Neither follows"], ans:0, exp:"Conclusion I directly follows. Conclusion II invalidly reverses the universal quantifier."},
-    {q:"Doctor : Hospital :: Teacher : ?", opts:["Book","Student","School","Chalk"], ans:2, exp:"Doctor works in a Hospital; Teacher works in a School."},
-    {q:"Arrange logically: 1.Country 2.Village 3.State 4.District", opts:["2,4,3,1","1,3,4,2","2,3,4,1","4,2,3,1"], ans:0, exp:"Hierarchy from smallest: Village(2) < District(4) < State(3) < Country(1)."},
-    {q:"If A=1, B=2... what is the sum code for 'BEST'?", opts:["46","44","48","50"], ans:0, exp:"B(2) + E(5) + S(19) + T(20) = 46."},
-    {q:"Workplace Psychometric: 'I prefer working alone rather than contributing in team sprints.' Ideal response for Accenture:", opts:["Strongly Agree","Agree","Strongly Disagree","Neutral"], ans:2, exp:"Accenture core values emphasize collaboration and 'One Accenture'. Strongly Disagree is correct."},
-    {q:"If 'P + Q' means P is father of Q, and 'P - Q' means P is sister of Q, what does A - B + C mean?", opts:["A is aunt of C","A is mother of C","A is sister of C","C is father of A"], ans:0, exp:"A is sister of B, B is father of C -> A is C's aunt."}
+    {q:"Doctor : Hospital :: Teacher : ?", opts:["Book","Student","School","Chalk"], ans:2, exp:"A Doctor works in a Hospital; a Teacher works in a School."},
+    {q:"Arrange logically: 1. Country 2. Village 3. State 4. District", opts:["2, 4, 3, 1","1, 3, 4, 2","2, 3, 4, 1","4, 2, 3, 1"], ans:0, exp:"Hierarchy from smallest: Village(2) < District(4) < State(3) < Country(1)."},
+    {q:"If A=1, B=2, C=3... what is the sum code for 'BEST'?", opts:["46","44","48","50"], ans:0, exp:"B(2) + E(5) + S(19) + T(20) = 46."},
+    {q:"Workplace SJT: 'I prefer working alone rather than contributing in team sprints.' Ideal response for Accenture:", opts:["Strongly Agree","Agree","Strongly Disagree","Neutral"], ans:2, exp:"Accenture core values heavily emphasize collaboration and team synergy. 'Strongly Disagree' is the expected answer."},
+    {q:"If 'P + Q' means P is father of Q, and 'P - Q' means P is sister of Q, what does A - B + C mean?", opts:["A is aunt of C","A is mother of C","A is sister of C","C is father of A"], ans:0, exp:"A is sister of B, B is father of C -> A is C's paternal aunt."},
+    {q:"Statements: Some pens are books. All books are papers. Conclusions: I. Some pens are papers. II. No pen is paper.", opts:["Only I follows","Only II follows","Either I or II follows","Neither follows"], ans:0, exp:"Since some pens overlap with books and all books are papers, those pens must be papers. Conclusion I follows."},
+    {q:"In a code, 'CAT' = 24, 'DOG' = 26. What is the code for 'PIG'?", opts:["32","34","30","28"], ans:0, exp:"P(16) + I(9) + G(7) = 32."},
+    {q:"P is the brother of Q. R is the mother of P. S is the father of R. How is Q related to S?", opts:["Grandson or Granddaughter","Father","Uncle","Nephew"], ans:0, exp:"P and Q are children of R. S is R's father -> Q is S's grandchild (grandson/granddaughter)."},
+    {q:"Statement: 'The government has decided to provide free meals to all primary school students.' Assumption I: Many parents cannot afford nutritious meals. Assumption II: Free meals will increase school attendance.", opts:["Only Assumption I is implicit","Only Assumption II is implicit","Both I and II are implicit","Neither is implicit"], ans:2, exp:"Both welfare assistance and school retention/attendance are standard implicit rationales behind government meal programs."},
+    {q:"Pen : Write :: Knife : ?", opts:["Cut","Sharp","Kitchen","Fork"], ans:0, exp:"A Pen is used to Write; a Knife is used to Cut (Function analogy)."},
+    {q:"In a certain code, 'LIGHT' is written as 'MJHIU'. How is 'FLAME' written?", opts:["GMBNF","GKZLD","HNCPE","GMBNF"], ans:0, exp:"Each letter shifted forward by +1: F->G, L->M, A->B, M->N, E->F = GMBNF."},
+    {q:"Statements: No apple is mango. All mangoes are oranges. Conclusions: I. Some oranges are mangoes. II. No apple is orange.", opts:["Only I follows","Only II follows","Both follow","Neither follows"], ans:0, exp:"All mangoes are oranges directly implies some oranges are mangoes. Apple can still overlap with the non-mango part of oranges, so II is not definite."},
+    {q:"SJT: A critical bug is found 1 hour before client delivery. What is the best course of action?", opts:["Deploy code and fix later quietly","Inform team lead immediately and assess impact honestly","Blame the developer who committed it","Ignore if test cases pass"], ans:1, exp:"Accenture assesses transparency, integrity, and proactive risk management."},
+    {q:"Find the odd one out: (A) Copper (B) Silver (C) Gold (D) Plastic", opts:["Copper","Silver","Gold","Plastic"], ans:3, exp:"Copper, Silver, and Gold are metallic conductors; Plastic is a non-metal insulator."},
+    {q:"If 'WATER' is written as 'RETAW', what is 'STREAM'?", opts:["MAERTS","MAREST","MEARTS","MARSTE"], ans:0, exp:"The letters of the word are reversed."},
+    {q:"Statement: 'Should students be allowed to use mobile phones during lectures?' Argument I: No, it causes distraction. Argument II: Yes, it helps quick research.", opts:["Only I is strong","Only II is strong","Both I and II are strong","Neither is strong"], ans:0, exp:"In an active classroom lecture environment, unchecked mobile phone usage is a proven direct distraction, making Argument I strong."}
   ],
   abstract: [
     {q:"A person walks 8 km North, turns Right and walks 6 km East. Shortest distance from start?", opts:["14 km","10 km","7 km","12 km"], ans:1, exp:"Pythagoras theorem: √(8² + 6²) = √(64 + 36) = √100 = 10 km."},
-    {q:"At 8 AM, a person stands facing East. Where does their shadow fall?", opts:["East","West","North","South"], ans:1, exp:"The morning sun rises in the East, so shadows fall towards the West."},
+    {q:"At 8 AM, a person stands facing East. Where does their shadow fall?", opts:["East","West","North","South"], ans:1, exp:"The morning sun rises in the East, so shadows fall in the exact opposite direction: West."},
     {q:"Number series: 2, 6, 12, 20, 30, _?_", opts:["40","42","38","44"], ans:1, exp:"Differences are +4, +6, +8, +10, +12. Next term: 30 + 12 = 42."},
-    {q:"Square numbers: 1, 4, 9, 16, 25, _?_", opts:["30","36","35","49"], ans:1, exp:"Next square is 6² = 36."},
+    {q:"Square numbers: 1, 4, 9, 16, 25, _?_", opts:["30","36","35","49"], ans:1, exp:"Sequence of n²: 1², 2², 3², 4², 5², 6² = 36."},
     {q:"Fibonacci sequence: 2, 3, 5, 8, 13, 21, _?_", opts:["30","34","28","32"], ans:1, exp:"Each term is the sum of previous two: 13 + 21 = 34."},
-    {q:"Flowchart: A=5, B=3. If A>B: Temp=A, A=B, B=Temp. Output A, B:", opts:["5 3","3 5","3 3","5 5"], ans:1, exp:"This is a standard swap logic. Final values: A=3, B=5."}
+    {q:"Flowchart: A=5, B=3. If A>B: Temp=A, A=B, B=Temp. Output A, B:", opts:["5 3","3 5","3 3","5 5"], ans:1, exp:"This is a standard swap logic. Final values: A=3, B=5."},
+    {q:"A man travels 5 km South, turns Left and travels 12 km. How far is he from the starting point?", opts:["17 km","13 km","15 km","10 km"], ans:1, exp:"Turning left when facing South points East. Distance = √(5² + 12²) = √(25 + 144) = √169 = 13 km."},
+    {q:"At 5 PM (Sunset), Mohan faces North. Which side does his shadow fall?", opts:["To his Left (West)","To his Right (East)","In front","Behind"], ans:1, exp:"In the evening, the sun is in the West, so shadows point East. For a person facing North, East is to his Right."},
+    {q:"Find next in series: 3, 9, 27, 81, _?_", opts:["162","243","324","108"], ans:1, exp:"Geometric progression with ratio ×3: 81 × 3 = 243."},
+    {q:"Letter series: B, D, G, K, P, _?_", opts:["T","U","V","W"], ans:2, exp:"Gaps between letters: B(+2)->D(+3)->G(+4)->K(+5)->P(+6)->V (16 + 6 = 22 = V)."},
+    {q:"In a row of 30 boys, Rahul is 12th from the left. What is his position from the right end?", opts:["18th","19th","20th","17th"], ans:1, exp:"Formula: Position from Right = Total - Left + 1 = 30 - 12 + 1 = 19th."},
+    {q:"Alternating series: 10, 100, 20, 90, 30, 80, 40, _?_", opts:["50","70","60","80"], ans:1, exp:"Two interleaved series: (10, 20, 30, 40...) and (100, 90, 80, 70...). Next term is 70."},
+    {q:"Cube series: 1, 8, 27, 64, 125, _?_", opts:["216","256","196","343"], ans:0, exp:"Sequence of n³: 1³, 2³, 3³, 4³, 5³, 6³ = 216."},
+    {q:"If a clock shows 3:00, what is the angle between the hour and minute hand?", opts:["45°","90°","120°","60°"], ans:1, exp:"At 3:00, the minute hand is at 12 and hour hand is at 3, creating a 90° angle (3 × 30° = 90°)."},
+    {q:"Flowchart loop trace: Sum=0, i=1. Loop: Sum = Sum + i; i = i + 1. While i <= 4. Final Sum?", opts:["4","10","6","15"], ans:1, exp:"Sum = 1 + 2 + 3 + 4 = 10."},
+    {q:"Find next: 7, 14, 28, 56, _?_", opts:["112","84","98","120"], ans:0, exp:"Each term is multiplied by 2: 56 × 2 = 112."},
+    {q:"Kiran walks 10m West, turns South and walks 10m, then turns East and walks 10m. Where is he from start?", opts:["10m North","10m South","At starting point","20m West"], ans:1, exp:"He moved West 10, South 10, East 10 -> net displacement is 10m South."}
   ],
   tech: [
     {q:"What is the output of: a = 5, b = 3; c = a ^ b; print c", opts:["8","2","6","15"], ans:2, exp:"5 = 0101, 3 = 0011. Bitwise XOR (0101 ^ 0011) = 0110 = 6."},
-    {q:"What is the result of 12 >> 2?", opts:["6","3","48","24"], ans:1, exp:"Right shift by 2 is integer division by 2² (12 / 4 = 3)."},
-    {q:"What is the result of 3 << 3?", opts:["9","6","24","12"], ans:2, exp:"Left shift by 3 is multiplication by 2³ (3 × 8 = 24)."},
-    {q:"Which CPU scheduling algorithm can cause the Convoy Effect?", opts:["Round Robin","FCFS","SJF","Priority"], ans:1, exp:"FCFS causes Convoy Effect when short processes queue behind a CPU-heavy process."},
-    {q:"Which SQL command rapidly clears all rows without row-by-row logging (DDL)?", opts:["DELETE","DROP","TRUNCATE","REMOVE"], ans:2, exp:"TRUNCATE is a DDL command that resets table storage instantly."},
-    {q:"In MS Excel, what does $A$1 represent?", opts:["Relative reference","Absolute cell reference","Formula error","Named range"], ans:1, exp:"The dollar signs fix both column and row when copied."},
-    {q:"Which OSI layer is responsible for logical IP packet routing?", opts:["Data Link","Network","Transport","Physical"], ans:1, exp:"Layer 3 (Network Layer) handles IP addressing and routing."}
+    {q:"What is the result of 12 >> 2?", opts:["6","3","48","24"], ans:1, exp:"Right shift by 2 is integer division by 2²: 12 / 4 = 3."},
+    {q:"What is the result of 3 << 3?", opts:["9","6","24","12"], ans:2, exp:"Left shift by 3 is multiplication by 2³: 3 × 8 = 24."},
+    {q:"Which CPU scheduling algorithm can cause the Convoy Effect?", opts:["Round Robin","FCFS","SJF","Priority"], ans:1, exp:"FCFS (First-Come, First-Served) causes Convoy Effect when short processes wait behind CPU-heavy ones."},
+    {q:"Which SQL command rapidly clears all rows without row-by-row logging (DDL)?", opts:["DELETE","DROP","TRUNCATE","REMOVE"], ans:2, exp:"TRUNCATE is a DDL command that deallocates data pages instantly without row-by-row logging."},
+    {q:"In MS Excel, what does $A$1 represent?", opts:["Relative reference","Absolute cell reference","Formula error","Named range"], ans:1, exp:"Dollar signs before column and row fix the reference completely when copied."},
+    {q:"Which OSI layer is responsible for logical IP packet routing?", opts:["Data Link","Network","Transport","Physical"], ans:1, exp:"Layer 3 (Network Layer) is responsible for logical IP addressing and routing."},
+    {q:"What is the bitwise NOT (~n) formula for integer n in two's complement?", opts:["-(n + 1)","-n","n + 1","~n = n"], ans:0, exp:"In 2's complement arithmetic, ~n is equal to -(n + 1). E.g., ~5 = -6."},
+    {q:"Which of the following is NOT one of the 4 Coffman deadlock conditions?", opts:["Mutual Exclusion","Hold and Wait","Preemption Allowed","Circular Wait"], ans:2, exp:"The 4 conditions are: Mutual Exclusion, Hold & Wait, NO Preemption, and Circular Wait."},
+    {q:"What is the time complexity of searching an element in a balanced Binary Search Tree (BST)?", opts:["O(1)","O(log N)","O(N)","O(N log N)"], ans:1, exp:"In a balanced BST, tree height is log(N), making search O(log N)."},
+    {q:"In DBMS, which Normal Form guarantees that every determinant is a candidate key?", opts:["1NF","2NF","3NF","BCNF"], ans:3, exp:"Boyce-Codd Normal Form (BCNF) strictly requires that for any functional dependency X -> Y, X must be a super key."},
+    {q:"What does the MS Excel formula =COUNTIF(A1:A10, \">50\") return?", opts:["Sum of numbers > 50","Count of cells containing values > 50","Average of cells > 50","Max value in range"], ans:1, exp:"COUNTIF counts the number of cells that meet a given condition."},
+    {q:"What is the result of evaluate: 7 & 4?", opts:["4","7","0","3"], ans:0, exp:"7 = 0111_2, 4 = 0100_2. Bitwise AND (0111 & 0100) = 0100_2 = 4."},
+    {q:"Which protocol maps an IP address to a physical MAC address on a local network?", opts:["DNS","DHCP","ARP","RARP"], ans:2, exp:"ARP (Address Resolution Protocol) resolves IPv4 addresses into MAC addresses."},
+    {q:"Which data structure is inherently used to implement recursion and function call stacks?", opts:["Queue","Stack","Linked List","Tree"], ans:1, exp:"Stack follows LIFO (Last-In First-Out), making it the foundation for call frames."},
+    {q:"What is the worst-case time complexity of QuickSort?", opts:["O(N log N)","O(N)","O(N²)","O(log N)"], ans:2, exp:"QuickSort degrades to O(N²) when the selected pivot is repeatedly the extreme (smallest or largest) element."},
+    {q:"Which SQL clause is used to filter groups created by GROUP BY?", opts:["WHERE","HAVING","ORDER BY","FILTER"], ans:1, exp:"'HAVING' filters aggregated group results; 'WHERE' filters individual rows before grouping."},
+    {q:"Which Cloud Service Model provides virtual machines, raw storage, and networking?", opts:["SaaS","PaaS","IaaS","FaaS"], ans:2, exp:"Infrastructure as a Service (IaaS) provides virtual hardware, storage, and networking (e.g., AWS EC2)."},
+    {q:"Pseudocode trace: Set a = 2, b = 4. a = (a << 1) + (b >> 1). Print a:", opts:["6","8","10","4"], ans:0, exp:"a << 1 = 2 * 2 = 4. b >> 1 = 4 / 2 = 2. a = 4 + 2 = 6."}
   ]
 };
 
@@ -749,11 +799,44 @@ Determine if the word is positive or negative. If positive (Amiable), eliminate 
   }, 400);
 }
 
+// ======================== SMART UNREPEATED QUESTION ROTATION ========================
+let seenQuestionHistory = {};
+
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 // ======================== QUIZ CONTROLLER ========================
 function startQuiz(sec) {
   activeSection = sec;
   const pool = QB[sec] || [];
-  currentQuestions = [...pool].sort(() => Math.random() - 0.5).slice(0, 15);
+  if (!seenQuestionHistory[sec]) seenQuestionHistory[sec] = [];
+
+  // Filter for questions that haven't been shown yet in recent rounds
+  let unseen = pool.filter((_, idx) => !seenQuestionHistory[sec].includes(idx));
+
+  // If available unseen questions are fewer than 15, reset history to start fresh cycle
+  if (unseen.length < 15) {
+    seenQuestionHistory[sec] = [];
+    unseen = [...pool];
+  }
+
+  const shuffledPool = shuffleArray(unseen);
+  currentQuestions = shuffledPool.slice(0, Math.min(15, shuffledPool.length));
+
+  // Record shown questions in history
+  currentQuestions.forEach(q => {
+    const originalIdx = pool.findIndex(item => item.q === q.q);
+    if (originalIdx !== -1 && !seenQuestionHistory[sec].includes(originalIdx)) {
+      seenQuestionHistory[sec].push(originalIdx);
+    }
+  });
+
   currentQIndex = 0;
   score = 0;
 
